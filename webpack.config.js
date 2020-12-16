@@ -22,3 +22,10 @@ module.exports = {
         })
     ]
 }
+const productionConfig = merge([
+    {
+      output: {        
+        publicPath: "/test_task-SamUniversity/",  
+      },
+    },   
+  ]);
