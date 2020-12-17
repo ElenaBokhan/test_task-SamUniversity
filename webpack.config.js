@@ -34,10 +34,10 @@ module.exports = {
         new VueLoaderPlugin()
     ]
 }
-const productionConfig = merge([
-    {
-      output: {        
-        publicPath: "/test_task-SamUniversity/",  
-      },
-    },   
-  ]);
+// const productionConfig = merge([
+//     {
+//       output: {        
+//         publicPath: "/test_task-SamUniversity/",  
+//       },
+//     },   
+//   ]);

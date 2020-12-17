@@ -3,7 +3,7 @@ body{
 }
 header{
     display: flex;
-    background-color: #2f2a2d;
+    background-color: #0d201b;
     justify-content: space-between;
     color: #fafafa;
     padding: 30px 80px;
@@ -184,3 +184,25 @@ img {
 .d-block {
     display: block
 }
+table {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 14px;
+    border-collapse: collapse;
+    text-align: center;
+    }
+    th, td:first-child {
+    background: #AFCDE7;
+    color: white;
+    padding: 10px 20px;
+    }
+    th, td {
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    border-color: white;
+    }
+    td {
+    background: #D8E6F3;
+    }
+    th:first-child, td:first-child {
+    text-align: left;
+    }
