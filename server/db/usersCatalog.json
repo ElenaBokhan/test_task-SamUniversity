@@ -1,0 +1,89 @@
+[
+    {
+      "user":{
+        "id":1,
+        "name":"Евгений",
+        "surname:":"Закиров",
+        "patronymic":"Сергеевич"
+      },
+      "posts":[
+        {
+          "text":"post_1",
+          "createdAt":"2020-02-12 14:12:45"
+        },
+        
+        {
+          "text":"post_2",
+          "createdAt":"2020-03-13 21:24:15"
+        },
+        
+        {
+          "text":"post_3",
+          "createdAt":"2020-03-22 19:22:34"
+        },
+        
+        {
+          "text":"post_4",
+          "createdAt":"2020-04-14 23:23:33"
+        }
+        ]
+    },
+    {
+      "user":{
+        "id":2,
+        "name":"Алексанр",
+        "surname:":"Гренадёр",
+        "patronymic":"Иванович"
+      },
+      "posts":[
+        {
+          "text":"post_5",
+          "createdAt":"2020-01-22 03:06:32"
+        },
+        
+        {
+          "text":"post_6",
+          "createdAt":"2020-03-13 21:24:15"
+        },
+        
+        {
+          "text":"post_7",
+          "createdAt":"2020-04-02 08:13:47"
+        },
+        
+        {
+          "text":"post_8",
+          "createdAt":"2020-07-23 12:45:09"
+        }
+        ]
+    },
+      {
+      "user":{
+        "id":3,
+        "name":"Руслан",
+        "surname:":"Жирьянченко",
+        "patronymic":"Дмитриев"
+      },
+      "posts":[
+        {
+          "text":"post_9",
+          "createdAt":"2020-02-01 09:16:25"
+        },
+        
+        {
+          "text":"post_10",
+          "createdAt":"2020-02-11 17:55:23"
+        },
+        
+        {
+          "text":"post_11",
+          "createdAt":"2020-04-15 19:23:57"
+        },
+        
+        {
+          "text":"post_12",
+          "createdAt":"2020-08-18 22:42:23"
+        }
+        ]
+    }
+  ]
