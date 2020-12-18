@@ -206,3 +206,12 @@ table {
     th:first-child, td:first-child {
     text-align: left;
     }
+.search-icon{
+    cursor: pointer;
+    
+}
+.search-icon:hover{
+  
+    color: rgba(150, 173, 180, 0.62)
+   
+}

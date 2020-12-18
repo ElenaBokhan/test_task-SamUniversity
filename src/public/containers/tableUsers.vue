@@ -1,9 +1,17 @@
 <template>          
     <table>
-        <tr>
-        <th @click="sortUser(items)">User Name</th>
-        <th @click="sortPostNumber(items)">Number of posts</th>
-        <th>Last post date</th>                
+        <tr>            
+        <th>User Name
+            <font-awesome-icon icon="sort" class="search-icon" @click="sort('user.surname')"/>
+            <font-awesome-icon icon="search" @click="showInput=!showInput"/>            
+            <searchField v-if="showInput===true"/>
+        </th>
+        <th>Number of posts
+            <font-awesome-icon icon="sort" class="search-icon" @click="sort('posts.length')"/>            
+        </th>
+        <th>Last post date
+            <font-awesome-icon icon="sort" class="search-icon" @click="sortPostDate"/>
+            </th>                
         </tr>             
         <item 
         v-for="item of items" 
@@ -16,35 +24,41 @@
 
 <script>
 import item from '../components/list_users.vue'
+import searchField from '../components/searchProduct.vue'
 
 export default {
-    components: { item },
+    components: { item, searchField },
     data() {
         return {
             items: [],
             lastPostDate: "",
             url: "http://localhost:8080/server/db/users.json",
+            isSortName: false,
+            showInput: false
         }
     },
     methods: {
-        sortUser() {            
-           this.items = this.items.sort((a,b) => {
-                
-                return
-                a.user.surname-b.user.surname} )
-                console.log(this.items)
+        sort(param) {  
+           this.isSortName ? this.items.sort((a,b) => a.param>b.param ? 1 : -1)
+                           : this.items.sort((a,b) => a.param<b.param ? 1 : -1);         
+           this.isSortName = !this.isSortName;           
         },
-        sortPostNumber(){
-            const newitem = {                
-                    user:{
-                        id:1,
-                        name:"Евгений",
-                        surname:"Закиров",
-                        patronymic:"Сергеевич"
-                    },
-                    posts:[]
-            }
-            this.items = [...this.items, newitem]
+        sortPostNumber(){           
+            this.isSortName ? this.items.sort((a,b) => a.posts.length>b.posts.length ? 1 : -1)
+                            : this.items.sort((a,b) => a.posts.length<b.posts.length ? 1 : -1);         
+            this.isSortName = !this.isSortName; 
+        },
+        sortPostDate(){                       
+            this.isSortName ? this.items.sort((a,b) => this.getLastPost(a)>this.getLastPost(b) ? 1 : -1)
+                            : this.items.sort((a,b) => this.getLastPost(a)<this.getLastPost(b) ? 1 : -1);         
+            this.isSortName = !this.isSortName; 
+        },
+        getLastPost(el){
+            return el.posts.map(el=> el.createdAt).sort().reverse()[0]
+        },
+        searchUser(e){
+            debugger
+            this.items.filter(el=> el.user.surname === e)
         },
         addItem(item) {
             this.$parent.$refs.cartRef.addItem(item)

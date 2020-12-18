@@ -2,7 +2,7 @@
             <tr>
                 <td>{{ `${item.user.surname} ${item.user.name} ${item.user.patronymic}` }}</td>
                 <td>{{ item.posts.length }}</td> 
-                <td>{{ item.posts.map(el=> el.createdAt).sort().reverse()[0] }}</td>
+                <td>{{ this.$parent.getLastPost(item) }}</td>
             </tr>             
 </template> 
 
