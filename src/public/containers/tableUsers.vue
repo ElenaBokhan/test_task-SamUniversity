@@ -2,19 +2,24 @@
     <table>
         <tr>            
         <th>User Name
-            <font-awesome-icon icon="sort" class="search-icon" @click="sort"/>
-            <font-awesome-icon icon="search" @click="showInput=!showInput"/>            
-            <searchField v-if="showInput===true"/>
+            <font-awesome-icon icon="sort" class="search-icon" @click="sort('user.surname')"/>
+            <font-awesome-icon icon="search" @click="showInput=!showInput"/>
         </th>
         <th>Number of posts
-            <font-awesome-icon icon="sort" class="search-icon" @click="sortPostNumber"/>            
+            <font-awesome-icon icon="sort" class="search-icon" @click="sort('posts.length')"/>            
         </th>
         <th>Last post date
-            <font-awesome-icon icon="sort" class="search-icon" @click="sortPostDate"/>
-            </th>                
-        </tr>             
+            <font-awesome-icon icon="sort" class="search-icon" @click="sort"/>
+            <font-awesome-icon icon="search" @click="showInput=!showInput"/>
+        </th>                
+        </tr> 
+        <tr v-if="showInput===true">
+            <td colspan="3">
+                <searchField />
+            </td> 
+        </tr>            
         <item 
-        v-for="item of items" 
+        v-for="item of filteredItems || items" 
         :key="item.user.id" 
         :item="item"
         :type ="'users'"
@@ -24,59 +29,41 @@
 
 <script>
 import item from '../components/list_users.vue'
-import searchField from '../components/searchProduct.vue'
+import searchField from '../components/searchUser.vue'
+import _ from 'lodash'
 
 export default {
     components: { item, searchField },
     data() {
         return {
-            items: [],            
-            url: "http://localhost:8080/server/db/users.json",
+            items: [],
+            filteredItems: null,          
+            url: "http://localhost:8080/src/server/db/users.json",
             isSortName: false,
             showInput: false
         }
     },
     methods: {
-        sort() {  
-        
-           this.isSortName ? this.items.sort((a,b) => a.user.surname>b.user.surname ? 1 : -1)
-                           : this.items.sort((a,b) => a.user.surname<b.user.surname ? 1 : -1);         
-           this.isSortName = !this.isSortName;           
+        sort(value) {            
+            const firstCase = i => _.get(i, value)
+            const secondCase = i => this.getLastPost(i)
+            const param = typeof value === "string" ? firstCase : secondCase
+           
+            this.isSortName ? this.items.sort((a,b) => param(a) > param(b) ? 1 : -1)
+                            : this.items.sort((a,b) =>  param(a) < param(b) ? 1 : -1);         
+            this.isSortName = !this.isSortName;           
+        },        
+        getLastPost(el){                       
+            return el.posts.map(el=> el.createdAt).sort().reverse()[0] 
         },
-        sortPostNumber(){           
-            this.isSortName ? this.items.sort((a,b) => a.posts.length>b.posts.length ? 1 : -1)
-                            : this.items.sort((a,b) => a.posts.length<b.posts.length ? 1 : -1);         
-            this.isSortName = !this.isSortName; 
+        search(e){
+            e = e.trim().toLowerCase()
+            const newDate = e.replace(/[\d-:\s]/gi, "")            
+            this.filteredItems = !!newDate ? this.items.filter(({user}) => `${user.surname} ${user.name} ${user.patronymic}`.toLowerCase().includes(e))
+                                           : this.items.filter((el) => `${this.getLastPost(el)}`.includes(e))
         },
-        sortPostDate(){                       
-            this.isSortName ? this.items.sort((a,b) => this.getLastPost(a)>this.getLastPost(b) ? 1 : -1)
-                            : this.items.sort((a,b) => this.getLastPost(a)<this.getLastPost(b) ? 1 : -1);         
-            this.isSortName = !this.isSortName; 
-        },
-        getLastPost(el){
-            return el.posts.map(el=> el.createdAt).sort().reverse()[0]
-        },
-        searchUser(e){
-            debugger
-            this.items = this.items.filter(el=> el.user.surname === e)
-        },
-        addItem(item) {
-            this.$parent.$refs.cartRef.addItem(item)
-        },
-        addNewCatalogItem(p) {
-            this.items.push({
-                id_product: new Date() + '',
-                product_name: p.name,
-                price: p.price
-            })
-        },
-        filter(str) {
-            if (!str) {
-                this.filteredItems = this.items
-            } else {
-                let reg = new RegExp(str, 'gi')
-                this.filteredItems = this.items.filter (item => item.product_name.search(reg))
-            }
+        getList(){
+            this.filteredItems = null; 
         }
     },
     mounted() {
@@ -89,5 +76,35 @@ export default {
 </script>
 
 <style>
+table {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 14px;
+    border-collapse: collapse;
+    text-align: center;
+    margin: auto;
+}
+th, td:first-child {
+    background: #AFCDE7;
+    color: white;
+    
+}
+th, td {
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    border-color: white;
+    padding: 10px 20px;
+}
+td {
+    background: #D8E6F3;
+}
+th:first-child, td:first-child {
+    text-align: left;
+}
 
+.search-icon{
+    cursor: pointer;    
+}
+.search-icon:hover{  
+    color: rgba(150, 173, 180, 0.62);   
+}
 </style>

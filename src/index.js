@@ -8,6 +8,11 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faSearch, faSort } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
+import VueLodash from 'vue-lodash'
+import lodash from 'lodash'
+ 
+Vue.use(VueLodash, { name: 'custom' , lodash: lodash })
+
 
 import Vue from "vue"
 import app from "./public/app.vue"
