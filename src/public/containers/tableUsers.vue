@@ -2,12 +2,12 @@
     <table>
         <tr>            
         <th>User Name
-            <font-awesome-icon icon="sort" class="search-icon" @click="sort('user.surname')"/>
+            <font-awesome-icon icon="sort" class="search-icon" @click="sort"/>
             <font-awesome-icon icon="search" @click="showInput=!showInput"/>            
             <searchField v-if="showInput===true"/>
         </th>
         <th>Number of posts
-            <font-awesome-icon icon="sort" class="search-icon" @click="sort('posts.length')"/>            
+            <font-awesome-icon icon="sort" class="search-icon" @click="sortPostNumber"/>            
         </th>
         <th>Last post date
             <font-awesome-icon icon="sort" class="search-icon" @click="sortPostDate"/>
@@ -30,17 +30,17 @@ export default {
     components: { item, searchField },
     data() {
         return {
-            items: [],
-            lastPostDate: "",
+            items: [],            
             url: "http://localhost:8080/server/db/users.json",
             isSortName: false,
             showInput: false
         }
     },
     methods: {
-        sort(param) {  
-           this.isSortName ? this.items.sort((a,b) => a.param>b.param ? 1 : -1)
-                           : this.items.sort((a,b) => a.param<b.param ? 1 : -1);         
+        sort() {  
+        
+           this.isSortName ? this.items.sort((a,b) => a.user.surname>b.user.surname ? 1 : -1)
+                           : this.items.sort((a,b) => a.user.surname<b.user.surname ? 1 : -1);         
            this.isSortName = !this.isSortName;           
         },
         sortPostNumber(){           
@@ -58,7 +58,7 @@ export default {
         },
         searchUser(e){
             debugger
-            this.items.filter(el=> el.user.surname === e)
+            this.items = this.items.filter(el=> el.user.surname === e)
         },
         addItem(item) {
             this.$parent.$refs.cartRef.addItem(item)

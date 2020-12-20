@@ -1,12 +1,12 @@
     <template>
     <div>
-        <template v-if="type === 'users'">
+        <!-- <template v-if="type === 'users'">
             <tr>
                 <td>{{ `${item.user.surname} ${item.user.name} ${item.user.patronymic}` }}</td>
                 <td>{{ item.posts.length }}</td> 
                 <td>{{ item.posts.map(el=> el.createdAt).sort().reverse()[0] }}</td>
             </tr>             
-        </template> 
+        </template>  -->
         <template v-if="type.match(/catalog/)"> 
             <div :class="calcWrapClass"> 
             <img :src="calcImg" alt="_">

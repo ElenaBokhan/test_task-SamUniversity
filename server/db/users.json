@@ -70,5 +70,109 @@
           "createdAt":"2020-08-18 22:42:23"
         }
         ]
-    }
+    },
+    {
+    "user":{
+      "id":4,
+      "name":"Иван",
+      "surname":"Aгафонов",
+      "patronymic":"Иванович"
+    },
+    "posts":[
+      {
+        "text":"post_13",
+        "createdAt":"2020-01-22 03:06:32"
+      },
+      
+      {
+        "text":"post_14",
+        "createdAt":"2020-05-20 21:24:15"
+      },
+      
+      {
+        "text":"post_15",
+        "createdAt":"2020-09-13 08:13:47"
+      },
+      {
+        "text":"post_16",
+        "createdAt":"2020-02-22 03:06:32"
+      },
+      
+      {
+        "text":"post_17",
+        "createdAt":"2020-08-16 21:24:15"
+      },
+      
+      {
+        "text":"post_18",
+        "createdAt":"2020-11-11 08:13:47"
+      }
+      ]
+    },
+    {
+      "user":{
+        "id":5,
+        "name":"Иван",
+        "surname":"Умнов",
+        "patronymic":"Петрович"
+      },
+      "posts":[
+        {
+          "text":"post_13",
+          "createdAt":"2020-01-22 03:06:32"
+        },
+        
+        {
+          "text":"post_14",
+          "createdAt":"2020-05-20 21:24:15"
+        },
+        
+        {
+          "text":"post_15",
+          "createdAt":"2020-12-21 08:13:47"
+        },
+        {
+          "text":"post_16",
+          "createdAt":"2020-02-22 03:06:32"
+        },
+        
+        {
+          "text":"post_17",
+          "createdAt":"2020-08-16 21:24:15"
+        }       
+        ]
+      },
+      {
+        "user":{
+          "id":6,
+          "name":"Олег",
+          "surname":"Якушев",
+          "patronymic":"Алексеевич"
+        },
+        "posts":[
+          {
+            "text":"post_13",
+            "createdAt":"2020-01-22 03:06:32"
+          },
+          
+          {
+            "text":"post_14",
+            "createdAt":"2020-05-31 20:24:15"
+          },
+          
+          {
+            "text":"post_15",
+            "createdAt":"2020-02-21 08:13:47"
+          },
+          {
+            "text":"post_16",
+            "createdAt":"2020-03-22 03:06:32"
+          },
+          
+          {
+            "text":"post_17",
+            "createdAt":"2020-04-16 21:24:15"
+          }       
+          ]
+        }
   ]

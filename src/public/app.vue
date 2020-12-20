@@ -4,11 +4,11 @@
         <div>LOGO</div>      
         <div class="cart">            
             <button class="btn-cart">Cart</button>
-            <cart ref="cartRef"/>
+            <!-- <cart ref="cartRef"/> -->
         </div>
     </header>
     <main>
-        <catalog ref="catalog" />
+        <!-- <catalog ref="catalog" /> -->
         <users />
     </main>
   </div>
